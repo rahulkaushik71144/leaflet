@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MyMap from './components/map';
+import MyMap from "/home/rahul/Desktop/leaflettesting/leaflet/src/components/mapfun.jsx";
 import { useState } from 'react';
 
 

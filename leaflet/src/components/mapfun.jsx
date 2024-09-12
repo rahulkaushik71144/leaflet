@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
+// Ensure to use a valid Stamen tile layer URL
 const MyMap = () => {
-  // State to store the user's current position
   const [position, setPosition] = useState(null);
 
-  // Function to get the user's current location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -26,22 +25,22 @@ const MyMap = () => {
   return (
     <>
       {position ? (
-        // If position is available, center map on the user's location
         <MapContainer
           center={position}
           zoom={13}
-          style={{ height: "400px", width: "100%" }}
+          style={{ height: "100vh", width: "100%" }} // Ensure the map container has full size
         >
+          {/* Stamen Toner Tile Layer for a minimalistic design */}
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://stamen-tiles.a.ssl.fastly.net">Stamen Design</a> contributors'
           />
+          {/* Marker at user's position */}
           <Marker position={position}>
             <Popup>You are here!</Popup>
           </Marker>
         </MapContainer>
       ) : (
-        // Loading state while getting the user's location
         <p>Loading map...</p>
       )}
     </>
